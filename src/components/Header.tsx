@@ -31,7 +31,7 @@ export default function Header() {
 
         <button
           onClick={() => setShowAddressModal(true)}
-          className="hidden md:flex items-center gap-2 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full transition truncate max-w-[250px]"
+          className="hidden md:flex items-center gap-2 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full transition truncate max-w-62.5"
         >
           <MapPin size={16} className="text-orange-500" />
           <span>Deliver to</span>

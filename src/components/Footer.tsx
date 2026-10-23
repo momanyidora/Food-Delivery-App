@@ -14,6 +14,7 @@ import {
 
 export default function Footer() {
   const [showContact, setShowContact] = useState(false);
+  const currentYear = 2026;
 
   return (
     <footer className="bg-gray-900 text-gray-300 pt-16 pb-8 mt-auto">
@@ -80,7 +81,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/owner"
+                  href="/partner"
                   className="hover:text-orange-500 transition"
                 >
                   Partner with Us
@@ -102,19 +103,25 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500 transition">
+                <Link href="/faqs" className="hover:text-orange-500 transition">
                   FAQs
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500 transition">
+                <Link
+                  href="/privacy"
+                  className="hover:text-orange-500 transition"
+                >
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500 transition">
+                <Link
+                  href="/terms"
+                  className="hover:text-orange-500 transition"
+                >
                   Terms of Service
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -133,18 +140,18 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-orange-500 shrink-0" />
-                <span>+254 700 000 000</span>
+                <span>+254 729296447</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-orange-500 shrink-0" />
-                <span>support@dorahdash.com</span>
+                <span>dorahmomanyi5@gmail.com</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-          <p>© {new Date().getFullYear()} DorahDash. All rights reserved.</p>
+          <p>© {currentYear} DorahDash. All rights reserved.</p>
           <div className="flex gap-4">
             <span>Made with ❤️ in Kenya</span>
           </div>

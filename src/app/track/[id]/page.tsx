@@ -10,7 +10,6 @@ import {
   ChefHat,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import dynamic from "next/dynamic";
 
 // Dynamically import map to avoid SSR issues
@@ -27,29 +26,24 @@ export default function TrackPage() {
   const params = useParams();
   const { orders } = useStore();
   const order = orders.find((o) => o.id === params.id);
-  const [progress, setProgress] = useState(20);
 
   // Simulated moving driver location
   const [driverPos, setDriverPos] = useState<[number, number]>([
     40.7128, -74.006,
   ]);
 
+  const orderStatus = order?.status;
   useEffect(() => {
-    if (!order) return;
-    const idx = steps.findIndex((s) => s.key === order.status);
-    setProgress(((idx + 1) / steps.length) * 100);
-
     // Move driver slowly towards the destination if on the way
-    if (order.status === "on_way") {
-      const interval = setInterval(() => {
-        setDriverPos((prev) => [
-          prev[0] + (40.72 - prev[0]) * 0.05,
-          prev[1] + (-74.01 - prev[1]) * 0.05,
-        ]);
-      }, 2000);
-      return () => clearInterval(interval);
-    }
-  }, [order?.status]);
+    if (orderStatus !== "on_way") return;
+    const interval = setInterval(() => {
+      setDriverPos((prev) => [
+        prev[0] + (40.72 - prev[0]) * 0.05,
+        prev[1] + (-74.01 - prev[1]) * 0.05,
+      ]);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [orderStatus]);
 
   if (!order)
     return (
@@ -57,6 +51,7 @@ export default function TrackPage() {
     );
 
   const currentStep = steps.findIndex((s) => s.key === order.status);
+  const progress = ((currentStep + 1) / steps.length) * 100;
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">

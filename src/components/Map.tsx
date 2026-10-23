@@ -2,10 +2,8 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { useEffect, useState } from "react";
 
 // Fix Leaflet default icon issue in Next.js
-delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
@@ -26,12 +24,6 @@ export default function Map({
   driverLat?: number;
   driverLng?: number;
 }) {
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => setIsMounted(true), []);
-
-  if (!isMounted)
-    return <div className="h-64 bg-gray-200 animate-pulse rounded-xl" />;
-
   return (
     <div className="h-64 rounded-xl overflow-hidden border border-gray-200 relative z-0">
       <MapContainer

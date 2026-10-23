@@ -3,6 +3,7 @@ import { useStore } from "@/lib/store";
 import { X, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { MenuItem } from "@/lib/data";
+import Image from "next/image";
 
 export default function ItemModal({
   item,
@@ -23,9 +24,11 @@ export default function ItemModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-slide-up">
         <div className="relative h-48">
-          <img
+          <Image
             src={item.image}
             alt={item.name}
+            fill
+            unoptimized
             className="w-full h-full object-cover"
           />
           <button

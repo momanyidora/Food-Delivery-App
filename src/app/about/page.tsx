@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Globe,
   Users,
@@ -12,7 +13,7 @@ export default function AboutPage() {
   return (
     <div className="bg-gray-50 pb-20">
       {/* Hero */}
-      <section className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-20">
+      <section className="bg-linear-to-r from-orange-500 to-red-500 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Story</h1>
           <p className="text-lg md:text-xl opacity-90">
@@ -40,9 +41,11 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1543353071-10c8ba85a904?w=800&fit=crop"
               alt="Chef preparing food"
+              fill
+              unoptimized
               className="w-full h-full object-cover"
             />
           </div>

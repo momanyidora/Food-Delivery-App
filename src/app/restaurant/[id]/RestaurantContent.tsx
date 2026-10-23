@@ -1,11 +1,12 @@
 "use client";
 import { restaurants, MenuItem } from "@/lib/data";
 import { useStore } from "@/lib/store";
+import ItemModal from "@/components/ItemModel";
+import Image from "next/image";
 import { Star, Clock, Bike, Plus, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
-// import ItemModal from "@/components/ItemModal"; // Import the new modal
 
 export default function RestaurantContent() {
   const params = useParams();
@@ -32,12 +33,14 @@ export default function RestaurantContent() {
   return (
     <div>
       <div className="relative h-64 md:h-80">
-        <img
+        <Image
           src={restaurant.cover}
           alt={restaurant.name}
+          fill
+          unoptimized
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
         <Link
           href="/"
           className="absolute top-4 left-4 bg-white/90 p-2 rounded-full hover:bg-white text-gray-900"
@@ -88,9 +91,12 @@ export default function RestaurantContent() {
               onClick={() => setSelectedItem(item)} // Trigger modal on click
               className="bg-white rounded-xl p-4 flex gap-4 border border-gray-100 hover:shadow-md transition cursor-pointer"
             >
-              <img
+              <Image
                 src={item.image}
                 alt={item.name}
+                width={96}
+                height={96}
+                unoptimized
                 className="w-24 h-24 rounded-lg object-cover"
               />
               <div className="flex-1">
@@ -116,7 +122,7 @@ export default function RestaurantContent() {
         <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-80 animate-slide-up z-30">
           <Link
             href="/cart"
-            className="block bg-orange-500 hover:bg-orange-600 text-white p-4 rounded-xl shadow-2xl flex items-center justify-between"
+            className="bg-orange-500 hover:bg-orange-600 text-white p-4 rounded-xl shadow-2xl flex items-center justify-between"
           >
             <div>
               <div className="text-sm opacity-90">{cartCount} items</div>

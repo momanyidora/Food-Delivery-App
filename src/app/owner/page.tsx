@@ -1,6 +1,5 @@
 "use client";
 import { useStore } from "@/lib/store";
-import { useState } from "react";
 import { Package, ChefHat, Bike, CheckCircle2, TrendingUp } from "lucide-react";
 
 export default function OwnerDashboard() {
@@ -8,9 +7,7 @@ export default function OwnerDashboard() {
 
   // Simulate an owner logged in for "Bella Italia"
   const myRestaurant = "Bella Italia";
-  const myOrders = orders.filter((o) =>
-    o.items.some((i) => i.restaurantName === myRestaurant),
-  );
+  const myOrders = orders;
 
   const stats = {
     totalRevenue: myOrders.reduce((s, o) => s + o.total, 0),

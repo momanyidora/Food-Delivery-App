@@ -15,11 +15,14 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useStore } from "@/lib/store";
+import Image from "next/image";
+import RequestCityModal from "@/components/RequestCityModal";
 
 export default function Home() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortBy, setSortBy] = useState("Recommended");
+  const [showRequestCity, setShowRequestCity] = useState(false);
   const { favorites, toggleFavorite } = useStore();
 
   const categories = [
@@ -37,7 +40,7 @@ export default function Home() {
     "Middle Eastern",
   ];
 
-  let filtered = restaurants.filter(
+  const filtered = restaurants.filter(
     (r) =>
       (activeCategory === "All" ||
         r.cuisine.toLowerCase().includes(activeCategory.toLowerCase())) &&
@@ -159,13 +162,11 @@ export default function Home() {
               </button>
               <Link href={`/restaurant/${r.id}`}>
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <Image
                     src={r.image}
                     alt={r.name}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src =
-                        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop"; // Generic food fallback
-                    }}
+                    fill
+                    unoptimized
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                   />
 
@@ -274,16 +275,21 @@ export default function Home() {
           <div className="text-center mt-8">
             <p className="text-sm text-gray-400">
               Don&apos;t see your country?{" "}
-              <a
-                href="#"
-                className="text-orange-500 font-medium hover:underline"
+              <button
+                onClick={() => setShowRequestCity(true)}
+                className="text-orange-500 font-medium hover:underline hover:text-orange-600 transition"
               >
                 Request a city
-              </a>
+              </button>
             </p>
           </div>
         </div>
       </div>
+
+      {/* Request City Modal */}
+      {showRequestCity && (
+        <RequestCityModal onClose={() => setShowRequestCity(false)} />
+      )}
     </div>
   );
 }

@@ -1,10 +1,27 @@
 "use client";
 import { useStore } from "@/lib/store";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
-import Link from "next/link";
+import { Suspense, useState } from "react";
 
 export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-12 bg-gray-50">
+          <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md animate-pulse">
+            <div className="h-8 bg-gray-100 rounded mb-4" />
+            <div className="h-12 bg-gray-100 rounded mb-3" />
+            <div className="h-12 bg-gray-100 rounded" />
+          </div>
+        </div>
+      }
+    >
+      <LoginForm />
+    </Suspense>
+  );
+}
+
+function LoginForm() {
   const { login } = useStore();
   const router = useRouter();
   const params = useSearchParams();

@@ -3,6 +3,7 @@ import { useStore } from "@/lib/store";
 import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, user, clearCart } = useStore();
@@ -61,9 +62,12 @@ export default function CartPage() {
               key={item.id}
               className="bg-white rounded-xl p-4 flex gap-4 border border-gray-100"
             >
-              <img
+              <Image
                 src={item.image}
                 alt={item.name}
+                width={80}
+                height={80}
+                unoptimized
                 className="w-20 h-20 rounded-lg object-cover"
               />
               <div className="flex-1">
