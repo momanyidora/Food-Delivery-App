@@ -1,7 +1,7 @@
 "use client";
 import { useStore } from "@/lib/store";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MapPin, CreditCard, Check, Tag } from "lucide-react";
 
 export default function CheckoutPage() {
@@ -19,12 +19,18 @@ export default function CheckoutPage() {
   const [promo, setPromo] = useState("");
   const [discount, setDiscount] = useState(0);
 
+  useEffect(() => {
+    if (!user) {
+      router.push("/login?redirect=/checkout");
+    } else if (cart.length === 0) {
+      router.push("/");
+    }
+  }, [user, cart.length, router]);
+
   if (!user) {
-    router.push("/login?redirect=/checkout");
     return null;
   }
   if (cart.length === 0) {
-    router.push("/");
     return null;
   }
 

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 // Dynamically import map to avoid SSR issues
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
@@ -23,6 +24,20 @@ const steps = [
 ];
 
 export default function TrackPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-3xl mx-auto px-4 py-8">
+          <div className="h-32 rounded-2xl bg-gray-200 animate-pulse" />
+        </div>
+      }
+    >
+      <TrackContent />
+    </Suspense>
+  );
+}
+
+function TrackContent() {
   const params = useParams();
   const { orders } = useStore();
   const order = orders.find((o) => o.id === params.id);
