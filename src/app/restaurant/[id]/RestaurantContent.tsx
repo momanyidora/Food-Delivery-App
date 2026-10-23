@@ -1,7 +1,7 @@
 "use client";
 import { restaurants, MenuItem } from "@/lib/data";
 import { useStore } from "@/lib/store";
-import ItemModal from "@/components/ItemModel";
+import ItemModal from "@/components/ItemModal";
 import Image from "next/image";
 import { Star, Clock, Bike, Plus, ArrowLeft } from "lucide-react";
 import Link from "next/link";
