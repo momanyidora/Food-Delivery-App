@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DorahDash
 
-## Getting Started
+DorahDash is a food delivery demo built with Next.js. Browse restaurants and menus, add items to a cart, choose a delivery address, and follow a simulated order through delivery.
 
-First, run the development server:
+## Run locally
+
+Install dependencies and start the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+No environment variables or external service credentials are required for the demo.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+- Browse, search, filter, and sort restaurants and menus.
+- Save favorite restaurants and add menu items to a single-restaurant cart.
+- Select a delivery address and continue to checkout.
+- Apply the `DORAH25` promo code for a demo discount.
+- View orders and their simulated status and driver location.
+- Browse information pages, FAQs, privacy and terms pages, and partner application forms.
 
-To learn more about Next.js, take a look at the following resources:
+Sign-in accepts any email and password. The app is a frontend demo: account, payment, partner applications, and city requests are not connected to backend services. Cart, account, saved address, and order data are persisted in the browser using Zustand. Order status changes and driver movement are simulated.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Available scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run dev    # Start the development server
+npm run lint   # Run ESLint
+npm run build  # Create a production build
+npm run start  # Serve a production build
+```
 
-## Deploy on Vercel
+Run `npm run build` before `npm run start`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 16 with the App Router
+- React 19 and TypeScript
+- Tailwind CSS 4
+- Zustand with browser persistence
+- React Leaflet and OpenStreetMap tiles for the tracking map
+- Lucide icons
+
+## Project structure
+
+```text
+src/
+  app/           Routes and page layouts
+  components/    Shared UI components and dialogs
+  lib/           Restaurant data and the Zustand store
+```
+
+Dynamic routes include `/restaurant/[id]` and `/track/[id]`.
